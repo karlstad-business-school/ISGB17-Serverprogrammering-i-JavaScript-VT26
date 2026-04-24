@@ -1,14 +1,188 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Min html-sida</title>
-    </head>
-    <body>
-        <h1>Allt om hamstrar.com</h1>
-        <p>Aenean mollis, arcu sit amet dictum tincidunt, justo diam sollicitudin ex, quis semper lorem nisi fringilla ligula. Nam
-        sed orci nec mi tincidunt finibus. Sed accumsan vitae lacus sit amet faucibus. Sed eget metus vulputate lectus lacinia
-        porta. Mauris in libero a urna commodo placerat. Proin id ultricies libero. Pellentesque ullamcorper molestie malesuada.
-        Nam at felis quis metus aliquet varius. Pellentesque id odio non ex lobortis ullamcorper eu eu nisl. Cras ut risus
-        malesuada nisi tincidunt ultrices eget vitae purus. Sed sit amet diam velit.</p>
-    </body>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HamsterGuiden - Allt om din lilla vän</title>
+    <style>
+        :root {
+            --primary: #8d6e63;
+            --secondary: #d7ccc8;
+            --accent: #ffab91;
+            --text: #3e2723;
+            --bg: #efebe9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            background: var(--white);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem; }
+        h3 { color: var(--primary); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            border: 1px solid var(--secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🐹 HamsterGuiden</h1>
+        <p>Din kompletta resurs för lyckliga och friska hamstrar</p>
+    </header>
+
+    <nav>
+        <a href="#arter">Arter</a>
+        <a href="#skotsel">Skötsel</a>
+        <a href="#kost">Kost</a>
+        <a href="#beteende">Beteende</a>
+    </nav>
+
+    <main>
+        <section id="introduktion">
+            <h2>Välkommen till hamsterns värld</h2>
+            <p>Hamstrar är populära sällskapsdjur som tillhör gnagarfamiljen. De är kända för sina stora kindpåsar som de använder för att bära mat till sina bon. Dessa små varelser är fascinerande, aktiva och kan bli fantastiska vänner om de tas om hand på rätt sätt.</p>
+        </section>
+
+        <section id="arter">
+            <h2>Olika hamsterarter</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Guldhamster (Syrisk)</h3>
+                    <p>Den vanligaste arten. De är <span class="highlight">strikt ensamlevande</span> och blir ofta mycket tama. De är större än dvärghamstrar.</p>
+                </div>
+                <div class="card">
+                    <h3>Rysk Vintervit</h3>
+                    <p>En liten och rund dvärghamster som kan byta färg till vit under vintern. Sociala men trivs ofta bäst ensamma i fångenskap.</p>
+                </div>
+                <div class="card">
+                    <h3>Roborovski</h3>
+                    <p>Den minsta och snabbaste arten. De är mer för observation än hantering då de är extremt livliga.</p>
+                </div>
+                <div class="card">
+                    <h3>Campbells</h3>
+                    <p>Liknar den ryska vintervita men har andra färgvariationer. Behöver en vaksam hand då de kan vara revirhävdande.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skotsel">
+            <h2>Grundläggande skötsel</h2>
+            <p>För att en hamster ska må bra krävs rätt miljö:</p>
+            <ul>
+                <li><strong>Buren:</strong> Ju större desto bättre! En guldhamster bör ha minst 0.5 kvm oavbruten golvyta.</li>
+                <li><strong>Bottenmaterial:</strong> Ett tjockt lager (minst 15-20 cm) av dammfritt spån eller pappersbaserat strö så de kan gräva tunnlar.</li>
+                <li><strong>Hjulet:</strong> Ett måste för motion. Det ska vara tillräckligt stort så att hamsterns rygg inte böjs (minst 28cm för guldhamster).</li>
+                <li><strong>Sandbad:</strong> Hamstrar badar inte i vatten. De behöver en skål med finkornig chinchillasand för att hålla pälsen ren.</li>
+            </ul>
+        </section>
+
+        <section id="kost">
+            <h2>Vad äter en hamster?</h2>
+            <p>Hamstrar är allätare och behöver en varierad kost:</p>
+            <ul>
+                <li><strong>Fröblandning:</strong> Grunden i kosten. Välj en blandning av hög kvalitet utan för mycket feta nötter.</li>
+                <li><strong>Färska grönsaker:</strong> Broccoli, gurka, paprika och morötter är uppskattade (i måttliga mängder).</li>
+                <li><strong>Protein:</strong> Enstaka mjölmaskar, kokt ägg eller en bit osaltad kyckling ger viktigt protein.</li>
+                <li><strong>Färskt vatten:</strong> Ska alltid finnas tillgängligt i flaska eller en tung keramikskål.</li>
+            </ul>
+        </section>
+
+        <section id="beteende">
+            <h2>Beteende och dygnsrytm</h2>
+            <p>Hamstrar är <span class="highlight">nattaktiva</span> djur. Det betyder att de sover under dagen och är som mest aktiva under sena kvällar och nätter. Det är viktigt att inte väcka en sovande hamster då det kan orsaka stress.</p>
+            <p>De älskar att utforska, klättra och framförallt att gräva. Ge dem massor av gömställen, rör och tuggleksaker av trä för att hålla dem sysselsatta.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HamsterGuiden - Skapad för alla gnagarälskare</p>
+    </footer>
+
+</body>
 </html>

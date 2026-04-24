@@ -1,6 +1,4 @@
 'use strict';
-const myServer = require('./minModul.js');
+const myServ = require('./ex1.js');
 
-//Starta server
-
-myServer.mySimpleServerStart();
+myServ.myBestWebAServerEver();

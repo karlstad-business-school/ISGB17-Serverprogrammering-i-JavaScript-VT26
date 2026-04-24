@@ -1,0 +1,12 @@
+{
+  "name": "kodexempel-1",
+  "version": "1.0.0",
+  "description": "kj",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
