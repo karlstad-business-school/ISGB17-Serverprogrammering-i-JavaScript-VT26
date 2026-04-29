@@ -16,3 +16,22 @@
 //7.
 // /Om tid finnes och ni vill gräva på egen hand. Mer kommer workshop 1 (i eftermiddag).
 //Jobba med jsdom se https://www.npmjs.com/package/jsdom
+
+const express = require('express');
+
+let app = express();
+
+app.listen(3000, function() {
+    console.log('Servern körs på port 3000!');
+});
+
+app.use('/diverse', express.static(__dirname + '/static'));
+
+app.get('/', function(request, response){
+
+    response.sendFile(__dirname + '/static/html/index.html', function(err) {
+        //Om ngt gick fel ta hand om det här!
+    });
+
+});
+

@@ -29,5 +29,91 @@
 
 */
 
+const express = require('express');
+const jsdom = require('jsdom');
+
+const fs = require('fs');
+
+const app = express();
+
+app.listen(3000, function() {
+    console.log('Servern körs på port 3000!');
+});
+
+app.use('/openDir', express.static(__dirname + '/lostFiles'));
+app.use(express.urlencoded( {extended : true} ));
+
+
+app.get('/', function(request, response) {
+
+
+    response.sendFile(__dirname + '/lostFiles/html/form.html', function( err) {
+
+        if (err) {
+            console.log( err );
+            response.send( err.message );
+        } else {
+            console.log('Allt ok!');
+        }
+
+    });
+
+});
+
+app.post('/', function( request, response) {
+
+    let red = 0, green = 0, blue = 0;
+
+    try {
+
+        console.log( request.body );
+
+        if( request.body === undefined) {
+            throw new Error('Ingen data till servern!');
+        }
+
+        if( request.body.red === undefined) {
+            throw new Error('Röd saknar värde!');
+        }
+
+        red = request.body.red;
+        red = red.trim();
+
+        if( red.length === 0) {
+            throw new Error('Ange röd...');
+        }
+
+        //response.send(request.body);
+        //heltal, tal mellan 0-255...
+        //Allt ok...
+
+        red = parseInt(red);
+
+        //Hårdkodar värden som borde hämtas från body...
+        green = 100;
+        blue = 100;
+
+        fs.readFile(__dirname + '/lostFiles/html/index.html', function(err, data) {
+
+            let serverDOM = new jsdom.JSDOM( data );
+
+            serverDOM.window.document.querySelector('#status').style.backgroundColor = 'rgb(' + red.toString() + ',' + green.toString() + ',' + blue.toString() + ')';
+
+            data = serverDOM.serialize();
+
+            response.send( data );
+
+        });
+
+
+
+
+    } catch(oError) {
+        //Här ska ni läsa upp form.html och addera ett felmeddelande + 
+        //placera tillbaka inkommande värden (om det finns ngt) i textrutorna.
+        //tips setAttribute() för textrutorna, VARFÖR?
+        response.send(oError.message);
+    }
+});
 
 
