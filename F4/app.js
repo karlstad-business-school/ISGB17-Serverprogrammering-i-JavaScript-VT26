@@ -4,7 +4,6 @@
     Skapa ett projekt: npm init
     Installera express: npm install express
     Installera jsdom: npm install jsdom
-    Kanske installera nodemon lokalt.
 
     1. Starta en webbserver som svarar på port 3000
     2. Lägg till ett middleware för att exponera lämplig mapp (se form.html och katalogstruktur)
@@ -27,6 +26,15 @@
     
     För att testa er lösning använd både webbläsare och Postman.
 
+    F4
+    1. Installer cookie-parser: npm install cookie-parser (titta i package.json om modulen nu finns med)
+    2. Lägg till cookie-parser som middelware
+    3. Till klienten skicka ner kakorna red, green och blue när alla villkor för valideringen uppfylls.
+    4. Modifera endpoint /reset och endpoint /start så att kakor blir en del av dessa.
+
+    node --watch app.js
+    Vi testar med webbläsare, Postman och egen klient som vi skapar i node.js
+
 */
 
 const express = require('express');
@@ -43,9 +51,7 @@ app.listen(3000, function() {
 app.use('/openDir', express.static(__dirname + '/lostFiles'));
 app.use(express.urlencoded( {extended : true} ));
 
-
 app.get('/', function(request, response) {
-
 
     response.sendFile(__dirname + '/lostFiles/html/form.html', function( err) {
 
@@ -53,7 +59,7 @@ app.get('/', function(request, response) {
             console.log( err );
             response.send( err.message );
         } else {
-            console.log('Allt ok!');
+            console.log('Det gick att skicka form.html till klienten!');
         }
 
     });
@@ -65,6 +71,8 @@ app.post('/', function( request, response) {
     let red = 0, green = 0, blue = 0;
 
     try {
+        
+        console.log( request.body );
 
         if( request.body === undefined) {
             throw new Error('Ingen data till servern!');
@@ -101,12 +109,14 @@ app.post('/', function( request, response) {
                 response.send(err.message)
             } else {
 
+                console.log('Det gick att läsa index.html!');
                 let serverDOM = new jsdom.JSDOM( data );
 
                 serverDOM.window.document.querySelector('#status').style.backgroundColor = 'rgb(' + red.toString() + ',' + green.toString() + ',' + blue.toString() + ')';
 
                 data = serverDOM.serialize();
 
+                console.log('Det gick att läsa filen index.html skickar nu till klienten!');
                 response.send( data );
             }
 
@@ -139,6 +149,9 @@ app.post('/', function( request, response) {
 
                 data = serverDOM.serialize();
 
+                console.log( oError.message );
+                console.log('Det gick att läsa form.html skickar nu till klienten!');
+
                 response.send( data );
             }
 
@@ -149,6 +162,7 @@ app.post('/', function( request, response) {
 app.get('/reset', function(request, response) {
 
     //Här kommer mer i samband med kakor!
+    console.log('Skickar en redirect till rooten till klienten!');
     response.redirect('/');
 
 });
@@ -163,11 +177,25 @@ app.get('/start', function(request, response) {
             console.log( err );
             response.send( err.message );
         } else {
-            console.log('Allt ok!');
+            console.log('Det gick att skicka filen index.html till klienten!');
         }
 
     });
 });
 
+app.get('/favicon.ico', function(request, response) {
+
+     response.sendFile(__dirname + '/lostFiles/ico/favicon.ico', function( err) {
+
+        if (err) {
+            console.log( err );
+            response.send( err.message );
+        } else {
+            console.log('Det gick att skicka filen favicon.ico till klienten!');
+        }
+
+    });
+
+});
 
 

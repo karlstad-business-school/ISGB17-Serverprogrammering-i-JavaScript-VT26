@@ -1,0 +1,17 @@
+{
+  "name": "w1",
+  "version": "1.0.0",
+  "description": "Exempel från W1 ISGB17 VT26",
+  "license": "ISC",
+  "author": "PB",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsdom": "^29.1.0"
+  }
+}
